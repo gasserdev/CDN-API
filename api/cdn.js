@@ -8,16 +8,23 @@ export default function handler(req, res) {
   let cdn;
 
   if (url.startsWith("https://github.com/") && url.includes("/blob/")) {
-    cdn = url
-      .replace("https://github.com/", "https://cdn.jsdelivr.net/gh/")
-      .replace("/blob/", "/");
+    const parts = url.replace("https://github.com/", "").split("/");
+    const user = parts[0];
+    const repo = parts[1];
+    const branch = parts[3];
+    const filePath = parts.slice(4).join("/");
+
+    cdn = `https://cdn.jsdelivr.net/gh/${user}/${repo}@${branch}/${filePath}`;
   }
 
   else if (url.startsWith("https://raw.githubusercontent.com/")) {
     const parts = url.split("/");
-    const userRepo = `${parts[3]}/${parts[4]}`;
-    const filePath = parts.slice(5).join("/");
-    cdn = `https://cdn.jsdelivr.net/gh/${userRepo}/${filePath}`;
+    const user = parts[3];
+    const repo = parts[4];
+    const branch = parts[5];
+    const filePath = parts.slice(6).join("/");
+
+    cdn = `https://cdn.jsdelivr.net/gh/${user}/${repo}@${branch}/${filePath}`;
   }
 
   else {

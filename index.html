@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>cdn-api Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex items-start justify-center py-10">
+
+  <main class="w-full max-w-3xl p-6 space-y-8">
+
+    <h1 class="text-4xl font-bold">cdn-api Documentation</h1>
+
+    <p class="text-zinc-300">
+      A simple serverless API that converts GitHub file URLs into <strong>jsDelivr CDN links</strong>.
+    </p>
+
+    <section class="space-y-2">
+      <h2 class="text-2xl font-semibold">What it does</h2>
+      <p class="text-zinc-300">
+        Converts GitHub URLs like:
+      </p>
+      <pre class="bg-zinc-900 p-3 rounded overflow-x-auto">
+https://github.com/user/repo/blob/main/file.js
+      </pre>
+      <p class="text-zinc-300">
+        Into a fast jsDelivr CDN link:
+      </p>
+      <pre class="bg-zinc-900 p-3 rounded overflow-x-auto">
+https://cdn.jsdelivr.net/gh/user/repo@main/file.js
+      </pre>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-2xl font-semibold">Usage</h2>
+      <p class="text-zinc-300"><strong>Endpoint:</strong></p>
+      <pre class="bg-zinc-900 p-3 rounded overflow-x-auto">
+/api/cdn?url=GITHUB_URL
+      </pre>
+
+      <p class="text-zinc-300"><strong>Example:</strong></p>
+      <pre class="bg-zinc-900 p-3 rounded overflow-x-auto">
+/api/cdn?url=https://github.com/user/repo/blob/main/script.js
+      </pre>
+
+      <p class="text-zinc-300"><strong>Response:</strong></p>
+      <pre class="bg-zinc-900 p-3 rounded overflow-x-auto">
+https://cdn.jsdelivr.net/gh/user/repo@main/script.js
+      </pre>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-2xl font-semibold">Supported URLs</h2>
+      <pre class="bg-zinc-900 p-3 rounded overflow-x-auto">
+https://github.com/user/repo/blob/branch/file
+https://raw.githubusercontent.com/user/repo/branch/file
+      </pre>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-2xl font-semibold">Not Supported</h2>
+      <ul class="list-disc list-inside text-zinc-300">
+        <li>Non-GitHub URLs</li>
+        <li>Private repositories</li>
+        <li>GitHub release assets</li>
+      </ul>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-2xl font-semibold">Deployment</h2>
+      <p class="text-zinc-300"><strong>Vercel:</strong> Deploy the repository and the API is available automatically.</p>
+      <p class="text-zinc-300"><strong>Netlify:</strong> Use the same logic inside a serverless function.</p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold">License</h2>
+      <p class="text-zinc-300">MIT</p>
+    </section>
+
+  </main>
+</body>
+</html>
